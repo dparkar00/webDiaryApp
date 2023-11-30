@@ -4,7 +4,8 @@ const DateComponent: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newDate = new Date(event.target.value + 'T00:00:00');
+    const newDate = new Date(event.target.value);
+    newDate.setHours(0, 0, 0, 0); // Set time to midnight
     setSelectedDate(newDate);
   };
 
