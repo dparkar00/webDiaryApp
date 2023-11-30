@@ -31,6 +31,14 @@ const App: React.FC = () => {
     setSelectedDate(diaryEntry.date);
   };
 
+  const deleteDiaryEntry = (event: React.MouseEvent, diaryEntryID: number) => {
+    event.stopPropagation();
+  
+    const updatedDiaryEntries = diaryEntries.filter((diaryEntry) => diaryEntry.id !== diaryEntryID);
+  
+    setDiaryEntries(updatedDiaryEntries);
+  };
+
   const handleUpdateDiaryEntry = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -99,7 +107,7 @@ const App: React.FC = () => {
         {diaryEntries.map((diaryEntry) => (
           <div key={diaryEntry.id} className="diaryEntry-item" onClick={() => handleDiaryEntryClick(diaryEntry)}>
             <div className="diaryEntry-header">
-              <button>x</button>
+              <button onClick={(event) => deleteDiaryEntry(event, diaryEntry.id)}>x</button>
             </div>
             <h2>{diaryEntry.title}</h2>
             <h3> {diaryEntry.date.toDateString()}</h3>
