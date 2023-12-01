@@ -1,11 +1,11 @@
 {
-  "name": "web-diary-app",
+  "name": "web-diary-app-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.ts",
   "scripts": {
     "start": "npx nodemon"
-  },
+    },
   "author": "",
   "license": "ISC",
   "devDependencies": {

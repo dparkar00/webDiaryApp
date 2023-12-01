@@ -1,12 +1,13 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 
-const DateComponent: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+interface DateComponentProps {
+  selectedDate: string;
+  onSelectDate: (selectedDate: string) => void;
+}
 
+const DateComponent: React.FC<DateComponentProps> = ({ selectedDate, onSelectDate }) => {
   const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newDate = new Date(event.target.value);
-    newDate.setHours(0, 0, 0, 0); // Set time to midnight
-    setSelectedDate(newDate);
+    onSelectDate(event.target.value);
   };
 
   return (
@@ -15,10 +16,10 @@ const DateComponent: React.FC = () => {
       <input
         type="date"
         id="datePicker"
-        value={selectedDate.toISOString().split('T')[0]}
+        value={selectedDate}
         onChange={handleDateChange}
       />
-      <input type="text" value={selectedDate.toDateString()} readOnly />
+      <input type="text" value={selectedDate} readOnly />
     </div>
   );
 };
