@@ -22,6 +22,10 @@ body {
   gap: 20px;
 }
 
+
+
+
+
 .diaryEntry-item {
   display: flex;
   flex-direction: column;
@@ -48,8 +52,22 @@ body {
 
 h2 {
   margin: 0;
+  display: flex;
+  word-break: break-all;
+  
+
+}
+p{
+  margin:0;
+  display:flex;
+  word-break: break-all;
 }
 
+.search{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .diaryEntry-form{
   display: flex;
   flex-direction: column;

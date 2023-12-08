@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import DateComponent from './DateComponent';
+import SearchBar from './SearchBar'
 
 type DiaryEntry = {
   id: number;
@@ -15,8 +16,8 @@ const App = () => {
   const [content, setContent] = useState("");
   const [selectedDate, setSelectedDate] = useState(""); // Initial date value
   const [selectedDiaryEntry, setSelectedDiaryEntry] = useState<DiaryEntry | null>(null);
+  const [filteredDiaryEntries, setFilteredDiaryEntries] = useState<DiaryEntry[]>([]);
 
-  // useEffect to fetch diary entries...
   useEffect(() => {
     const fetchDiaryEntries = async () => {
       try {
@@ -141,17 +142,39 @@ const App = () => {
     setSelectedDate("");
     setSelectedDiaryEntry(null);
   };
+  const handleSearch = (searchTerm: string, searchType: string) => {
+
+    // Update the filtering logic based on the selected search type
+    const filteredEntries = diaryEntries.filter((entry) => {
+      if (searchType === "title") {
+        return entry.title.toLowerCase().includes(searchTerm.toLowerCase());
+      } else if (searchType === "date") {
+        return entry.selectedDate.toLowerCase().includes(searchTerm.toLowerCase());
+      }
+      return false;
+    });
+
+    setFilteredDiaryEntries(filteredEntries);
+    setDiaryEntries(filteredEntries);
+  };
 
 
 
   return (
     <div className="app-container">
+      
+      
+      
+      <SearchBar onSearch={handleSearch} />
       <form 
       className="diaryEntry-form" 
       onSubmit={(event) => 
       selectedDiaryEntry 
       ? handleUpdateDiaryEntry(event) : handleAddDiaryEntry(event)
       }>
+        
+      
+     
         <input
           value={title}
           onChange={(event) => 
