@@ -9,10 +9,12 @@ Node.js
 Yarn or npm
 PostgreSQL
 Prisma CLI (npm install -g prisma)
+
 Clone the Repository
 git clone <repository-url> react-node-web-diary-app
 
 cd react-node-web-diary-app
+
 Setting Up the Database
 Create a PostgreSQL Database
 
